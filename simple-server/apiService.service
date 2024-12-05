@@ -1,0 +1,12 @@
+[Unit]
+Description=API Server Service
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/socat TCP-LISTEN:4242,fork EXEC:/usr/bin/apiServer.sh
+Restart=always
+ExecStartPost=/bin/sh -c 'echo "apiService started on TCP port 4242" >> /var/log/apiServer.log'
+
+[Install]
+WantedBy=multi-user.target
+

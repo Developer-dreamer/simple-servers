@@ -1,0 +1,12 @@
+[Unit]
+Description=AuthServer starter
+After=network.target
+
+[Service]
+ExecStart=sudo socat TCP4-LISTEN:7777,fork,pktinfo system:/usr/bin/authServer.sh
+Restart=always
+SyslogIdentifier=authServer
+
+[Install]
+WantedBy=multi-user.target
+

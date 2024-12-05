@@ -1,0 +1,13 @@
+[Unit]
+Description=Proxy Server Service
+After=apache2.service
+Requires=apache2.service
+
+[Service]
+ExecStart=sudo socat TCP4-LISTEN:80,fork,pktinfo system:/etc/proxyServer.sh
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
